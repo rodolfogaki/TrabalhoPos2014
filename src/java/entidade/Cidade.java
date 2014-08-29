@@ -9,47 +9,41 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author Rodolfo
  */
 @Entity
-public class Estado implements Serializable {
+public class Cidade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String nome;
-    private String uf;
-
-    public Estado() {
-    }
-
+    private Long   id;
+    private String Nome;
+    @ManyToOne
+    private Estado estado;
+            
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public String getNome() {
-        return nome;
+        return Nome;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String Nome) {
+        this.Nome = Nome;
     }
-
-    public String getUf() {
-        return uf;
+    public Estado getEstado() {
+        return estado;
     }
-
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
-
+   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -60,10 +54,10 @@ public class Estado implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Estado)) {
+        if (!(object instanceof Cidade)) {
             return false;
         }
-        Estado other = (Estado) object;
+        Cidade other = (Cidade) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -72,7 +66,7 @@ public class Estado implements Serializable {
 
     @Override
     public String toString() {
-        return id.toString();
+        return "entidade.Cidade[ id=" + id + " ]";
     }
     
 }

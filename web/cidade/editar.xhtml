@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="../template/template.xhtml" >
+        <ui:define name="conteudo">
+            <h3 align="center">Cadastro de cidade</h3>
+            <br/>
+            <h:form>
+                <p:growl />
+                <h:panelGrid columns="2">
+                    Código:  <p:inputText value="#{cidadeControle.cidade.id}"   id="id"   readonly="true"/>
+                    Nome:    <p:inputText value="#{cidadeControle.cidade.nome}" id="nome" required="true" requiredMessage="Nome é obrigatório" />
+                    Estado:  <p:autoComplete value="#{cidadeControle.cidade.estado}" 
+                                             completeMethod="#{cidadeControle.listaEstado}" 
+                                             converter="#{cidadeControle.estadoConverter}" 
+                                             var="estadoObj" 
+                                             itemLabel="#{estadoObj.nome}" 
+                                             itemValue="#{estadoObj}" 
+                                             size="60" 
+                                             forceSelection="true"
+                                             required="true" 
+                                             requiredMessage="O estado é obrigatório" />
+
+                    <p:commandButton value="Salvar" action="listar" actionListener="#{cidadeControle.salvar()}" ajax="false" />
+                    <p:commandButton value="Cancelar" action="listar" ajax="false" immediate="true" />
+                </h:panelGrid>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

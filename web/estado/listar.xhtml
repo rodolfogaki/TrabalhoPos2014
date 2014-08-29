@@ -8,10 +8,10 @@
 
     <ui:composition template="../template/template.xhtml" >
         <ui:define name="conteudo">
-            <h3 align="center">Lista de estado</h3>
+            <h3 align="center">Lista de estados</h3>
             <br/>
             <h:form>
-                <p:commandButton value="Novo Estado" action="editar" actionListener="#{estadoControle.novo()}" ajax="false"/>
+                <p:commandButton value="Novo" action="editar" actionListener="#{estadoControle.novo()}" ajax="false"/>
                 <p:commandButton value="Voltar" action="/template/template" ajax="false" />
                 <br/>
                 <p:dataTable value="#{estadoControle.listaTodos()}" var="estadoObj" paginator="true" rows="10" rowsPerPageTemplate="2,4,10">

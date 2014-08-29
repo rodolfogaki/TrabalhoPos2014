@@ -19,5 +19,24 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="2" author="Rodolfo" >
+        <createTable tableName="cidade">
+            <column type="int" name="id">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column type="varchar(60)" name="nome">
+                <constraints nullable="false"/>
+            </column>
+            <column type="int" name="estado_id">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Rodolfo" >
+        <addForeignKeyConstraint referencedColumnNames="id" 
+                                 referencedTableName="estado" 
+                                 constraintName="fk_estado_cidade" 
+                                 baseColumnNames="estado_id" 
+                                 baseTableName="cidade" />
+                                                                                                                                                                                                                                                                                                                                                            </changeSet>
 </databaseChangeLog>

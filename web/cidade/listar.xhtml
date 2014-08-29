@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="../template/template.xhtml" >
+        <ui:define name="conteudo">
+            <h3 align="center">Lista de cidades</h3>
+            <br/>
+            <h:form>
+                <p:commandButton value="Novo" action="editar" actionListener="#{cidadeControle.novo()}" ajax="false"/>
+                <p:commandButton value="Voltar" action="/template/template" ajax="false" />
+                <br/>
+                <p:dataTable value="#{cidadeControle.listaTodos()}" var="cidadeObj" paginator="true" rows="10" rowsPerPageTemplate="2,4,10">
+                    <p:column headerText="Codigo" filterBy="#{cidadeObj.id}">
+                        <h:outputText value="#{cidadeObj.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome" filterBy="#{cidadeObj.nome}">
+                        <h:outputText value="#{cidadeObj.nome}"/>
+                     </p:column>               
+                    <p:column headerText="Estado" filterBy="#{cidadeObj.estado.nome}">
+                        <h:outputText value="#{cidadeObj.estado.nome}"/>
+                    </p:column>                
+                    <p:column headerText="Operações">
+                        <p:commandButton icon="ui-icon-pencil" title="Editar" action="editar" actionListener="#{cidadeControle.editar}" ajax="false">
+                            <f:attribute value="#{cidadeObj}" name="cidade"/>
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-closethick" title="Excluir" action="listar"  actionListener="#{cidadeControle.excluir}" ajax="false" onclick="if(!confirm('Excluir registro?')) return false;">
+                            <f:attribute value="#{cidadeObj}" name="cidade"/>
+                        </p:commandButton>
+                    </p:column> 
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+
+

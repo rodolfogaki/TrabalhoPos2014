@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="../template/template.xhtml" >
+        <ui:define name="conteudo">
+            <h3 align="center">Lista de estado</h3>
+            <br/>
+            <h:form>
+                <p:commandButton value="Novo Estado" action="editar" actionListener="#{estadoControle.novo()}" ajax="false"/>
+                <p:commandButton value="Voltar" action="/template/template" ajax="false" />
+                <br/>
+                <p:dataTable value="#{estadoControle.listaTodos()}" var="estadoObj" paginator="true" rows="10" rowsPerPageTemplate="2,4,10">
+                    <p:column headerText="Codigo" filterBy="#{estadoObj.id}">
+                        <h:outputText value="#{estadoObj.id}"/>
+                    </p:column>
+                    <p:column headerText="Nome" filterBy="#{estadoObj.nome}">
+                        <h:outputText value="#{estadoObj.nome}"/>
+                     </p:column>               
+                    <p:column headerText="UF" filterBy="#{estadoObj.uf}">
+                        <h:outputText value="#{estadoObj.uf}"/>
+                    </p:column>                
+                    <p:column headerText="Operações">
+                        <p:commandButton icon="ui-icon-pencil" title="Editar" action="editar" actionListener="#{estadoControle.editar}" ajax="false">
+                            <f:attribute value="#{estadoObj}" name="estado"/>
+                        </p:commandButton>
+                        <p:commandButton icon="ui-icon-closethick" title="Excluir" action="listar"  actionListener="#{estadoControle.excluir}" ajax="false" onclick="if(!confirm('Excluir registro?')) return false;">
+                            <f:attribute value="#{estadoObj}" name="estado"/>
+                        </p:commandButton>
+                    </p:column> 
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
+
+
+
